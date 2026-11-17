@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>The One · Signing in</title>
+<style>
+  body { margin: 0; height: 100vh; display: grid; place-items: center; background: #1b1b1b; color: #d6d6d6;
+         font: 15px -apple-system, "Helvetica Neue", Arial, sans-serif; text-align: center; }
+  .mark { font-weight: 700; letter-spacing: .18em; } .mark span { color: #EAAE28; }
+  p { margin: 14px 0 0; color: #9a9a9a; }
+</style>
+</head>
+<body>
+<div>
+  <div class="mark">THE <span>ONE</span></div>
+  <p id="msg">Handing the sign-in back to After Effects…</p>
+</div>
+<script>
+  // Adobe sends the browser here with ?code=...&state=... (or ?error=...).
+  // Pass it straight to the listener The One opens on this computer while you sign in.
+  var PORT = 47821;
+  var q = location.search;
+  if (q && /[?&](code|error)=/.test(q)) {
+    location.replace('http://127.0.0.1:' + PORT + '/cb' + q);
+  } else {
+    document.getElementById('msg').textContent = 'Nothing to do here. Start the sign-in from The One in After Effects.';
+  }
+</script>
+</body>
+</html>
